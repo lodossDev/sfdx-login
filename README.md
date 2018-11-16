@@ -76,7 +76,7 @@ EXAMPLE
            Organisation: SAASFORCE LTD (xxxxxxxxxxx)
 ```
 
-_See code: [src/commands/force/auth/default/login.ts](https://github.com/Downloads/sfdx-login/blob/v0.0.0/src/commands/force/auth/default/login.ts)_
+_See code: [src/commands/force/auth/default/login.ts](https://github.com/lodossDev/sfdx-login/blob/v0.0.0/src/commands/force/auth/default/login.ts)_
 <!-- commandsstop -->
 <!-- debugging-your-plugin -->
 # Debugging your plugin
