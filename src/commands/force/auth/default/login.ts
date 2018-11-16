@@ -50,7 +50,7 @@ export default class DefaultLogin extends SfdxCommand {
         
         const authInfo = await AuthInfo.create(conn.accessToken);
         const org: Org = await Org.create(await Connection.create(authInfo));
-        this.org = await org.addUsername(authInfo);;
+        this.org = await org.addUsername(authInfo);
 
         const globalConfig = this.configAggregator.getGlobalConfig();
         globalConfig.set('defaultusername', this.flags.username);
