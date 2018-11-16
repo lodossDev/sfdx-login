@@ -1,0 +1,63 @@
+{
+  "name": "sfdx-login",
+  "version": "0.0.0",
+  "author": "Amir Hafeez",
+  "bugs": "https://github.com/lodossDev/sfdx-login/issues",
+  "dependencies": {
+    "@oclif/command": "1",
+    "@oclif/config": "1",
+    "@oclif/errors": "1",
+    "@salesforce/command": "0.2.5",
+    "tslib": "1"
+  },
+  "devDependencies": {
+    "@oclif/dev-cli": "^1",
+    "@oclif/plugin-help": "^2",
+    "@oclif/test": "^1",
+    "@salesforce/dev-config": "1.1.4",
+    "@types/chai": "^4",
+    "@types/mocha": "^5",
+    "@types/node": "^10",
+    "chai": "^4",
+    "globby": "^8",
+    "mocha": "^5",
+    "nyc": "^13",
+    "sinon": "5",
+    "ts-node": "^7",
+    "typescript": "^3.0"
+  },
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "files": [
+    "/lib",
+    "/messages",
+    "/npm-shrinkwrap.json",
+    "/oclif.manifest.json"
+  ],
+  "homepage": "https://github.com/lodossDev/sfdx-login",
+  "keywords": [
+    "sfdx-plugin"
+  ],
+  "license": "MIT",
+  "oclif": {
+    "commands": "./lib/commands",
+    "topics": {
+      "hello": {
+        "description": "Commands to say hello."
+      }
+    },
+    "bin": "sfdx",
+    "devPlugins": [
+      "@oclif/plugin-help"
+    ]
+  },
+  "repository": "Downloads/sfdx-login",
+  "scripts": {
+    "postpack": "rm -f oclif.manifest.json npm-shrinkwrap.json",
+    "posttest": "tslint -p test -t stylish",
+    "prepare": "rm -rf lib && tsc -b && oclif-dev manifest && oclif-dev readme && npm shrinkwrap",
+    "test": "nyc --extension .ts mocha --forbid-only \"test/**/*.test.ts\"",
+    "version": "oclif-dev readme && git add README.md"
+  }
+}
