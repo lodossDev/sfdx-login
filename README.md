@@ -71,10 +71,8 @@ OPTIONS
   --loglevel=(trace|debug|info|warn|error|fatal)  logging level for this command invocation
 
 EXAMPLE
-  $ sfdx force:auth:default:login --clientid=xxxxxxxxxxx 
-                                            --secret=xxxxxxxxxxxx
-                                            --username=lodoss118@saasforceltd.com 
-                                            --password=xxxxxxxxxx
+  $ sfdx force:auth:default:login --username=lodoss118@saasforceltd.com 
+                                  --password=xxxxxxxxxx
  
            Logged in as: lodoss118@saasforceltd.com (xxxxxxxxxxx)
            Organisation: SAASFORCE LTD (xxxxxxxxxxx)
