@@ -63,8 +63,8 @@ export default class DefaultLogin extends SfdxCommand {
             instanceUrl: conn.instanceUrl,
             orgId: userInfo.organizationId
         });
-        
-        this.org  = await Org.create(await Connection.create(authInfo));
+
+        this.org = await Org.create(await Connection.create(authInfo));
         return {};
     }
 }
