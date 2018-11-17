@@ -9,13 +9,11 @@ export default class DefaultLogin extends SfdxCommand {
     public static description = `This command adds a simple login mechanism missing from sfdx, you must have a connected app configured.`;
 
     public static examples = [
-        `$ sfdx force:auth:default:login --clientid=xxxxxxxxxxx 
-                                         --secret=xxxxxxxxxxxx
-                                         --username=lodoss118@saasforceltd.com 
+        `$ sfdx force:auth:default:login --username=lodoss118@saasforceltd.com 
                                          --password=xxxxxxxxxx
  
         Logged in as: lodoss118@saasforceltd.com (xxxxxxxxxxx)
-        Organisation: SAASFORCE LTD (xxxxxxxxxxx)
+        Organization: SAASFORCE LTD (xxxxxxxxxxx)
         `
     ];
 

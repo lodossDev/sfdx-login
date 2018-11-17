@@ -34,7 +34,7 @@ $ npm install -g sfdx-login
 $ sfdx COMMAND
 running command...
 $ sfdx (-v|--version|version)
-sfdx-login/0.0.0 darwin-x64 node-v8.9.4
+sfdx-login/0.0.1 darwin-x64 node-v8.9.4
 $ sfdx --help [COMMAND]
 USAGE
   $ sfdx COMMAND
@@ -46,7 +46,7 @@ USAGE
 
 ## `sfdx force:auth:default:login`
 
-This command adds a simple login mechanism missing from sfdx.
+This command adds a simple login mechanism missing from sfdx, you must have a connected app configured.
 
 ```
 USAGE
@@ -71,14 +71,16 @@ OPTIONS
   --loglevel=(trace|debug|info|warn|error|fatal)  logging level for this command invocation
 
 EXAMPLE
-  $ sfdx force:auth:default:login --username=lodoss118@saasforceltd.com 
-                                  --password=xxxxxxxxxx
+  $ sfdx force:auth:default:login --clientid=xxxxxxxxxxx 
+                                            --secret=xxxxxxxxxxxx
+                                            --username=lodoss118@saasforceltd.com 
+                                            --password=xxxxxxxxxx
  
            Logged in as: lodoss118@saasforceltd.com (xxxxxxxxxxx)
            Organisation: SAASFORCE LTD (xxxxxxxxxxx)
 ```
 
-_See code: [src/commands/force/auth/default/login.ts](https://github.com/lodossDev/sfdx-login/blob/v0.0.0/src/commands/force/auth/default/login.ts)_
+_See code: [src/commands/force/auth/default/login.ts](https://github.com/Downloads/sfdx-login/blob/v0.0.1/src/commands/force/auth/default/login.ts)_
 <!-- commandsstop -->
 <!-- debugging-your-plugin -->
 # Debugging your plugin
