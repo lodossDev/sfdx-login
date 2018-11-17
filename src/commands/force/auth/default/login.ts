@@ -22,8 +22,8 @@ export default class DefaultLogin extends SfdxCommand {
     protected static flagsConfig = {
         // flag with a value (-n, --name=VALUE)
         server: flags.string({char: 's', required: true, description: 'The instance endpoint i.e. loginUrl', default: 'https://test.salesforce.com'}),
-        clientid: flags.string({char: 'c', required: true, description: 'The connected app client id.'}),
-        secret: flags.string({char: 'k', required: true, description: 'The connected app secret key.'}),
+        clientid: flags.string({char: 'c', required: true, description: 'The connected app client id.', default: 'SalesforceDevelopmentExperience'}),
+        secret: flags.string({char: 'k', required: true, description: 'The connected app secret key.', default: '1384510088588713504'}),
         username: flags.string({char: 'u', required: true, description: 'Salesforce username.'}),
         password: flags.string({char: 'p', required: true, description: 'Salesforce password+security token.'})
     };
@@ -47,16 +47,24 @@ export default class DefaultLogin extends SfdxCommand {
         const userInfo = await jsExtend.soap.getUserInfo();
         this.ux.log('Logged in as: ' + userInfo.userName + ' (' + userInfo.userId + ')');
         this.ux.log('Organization: ' + userInfo.organizationName + ' (' + userInfo.organizationId + ')');
-        
-        const authInfo = await AuthInfo.create(conn.accessToken);
-        const org: Org = await Org.create(await Connection.create(authInfo));
-        this.org = await org.addUsername(authInfo);
 
         const globalConfig = this.configAggregator.getGlobalConfig();
         globalConfig.set('defaultusername', this.flags.username);
+        globalConfig.set('instanceUrl', conn.instanceUrl);
         await globalConfig.write();
 
-        // Return an object to be displayed with --json
+        const authInfo = await AuthInfo.create(conn.accessToken);
+     
+        await authInfo.save({
+            username: this.flags.username,
+            clientId: this.flags.clientid,
+            clientSecret: this.flags.secret,
+            loginUrl: this.flags.server,
+            instanceUrl: conn.instanceUrl,
+            orgId: userInfo.organizationId
+        });
+        
+        this.org  = await Org.create(await Connection.create(authInfo));
         return {};
     }
 }

@@ -34,7 +34,7 @@ $ npm install -g sfdx-login
 $ sfdx COMMAND
 running command...
 $ sfdx (-v|--version|version)
-sfdx-login/0.0.0 darwin-x64 node-v8.12.0
+sfdx-login/0.0.0 darwin-x64 node-v8.9.4
 $ sfdx --help [COMMAND]
 USAGE
   $ sfdx COMMAND
@@ -46,15 +46,19 @@ USAGE
 
 ## `sfdx force:auth:default:login`
 
-This command adds a simple login mechanism missing from sfdx, you must have a connected app configured.
+This command adds a simple login mechanism missing from sfdx.
 
 ```
 USAGE
   $ sfdx force:auth:default:login
 
 OPTIONS
-  -c, --clientid=clientid                         (required) The connected app client id.
-  -k, --secret=secret                             (required) The connected app secret key.
+  -c, --clientid=clientid                         (required) [default: SalesforceDevelopmentExperience] The connected
+                                                  app client id.
+
+  -k, --secret=secret                             (required) [default: 1384510088588713504] The connected app secret
+                                                  key.
+
   -p, --password=password                         (required) Salesforce password+security token.
 
   -s, --server=server                             (required) [default: https://test.salesforce.com] The instance
