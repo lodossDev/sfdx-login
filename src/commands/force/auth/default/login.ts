@@ -6,7 +6,7 @@ import {JsConnection} from '../../../../../src/index'
 
 export default class DefaultLogin extends SfdxCommand {
 
-    public static description = `This command adds a simple login mechanism missing from sfdx, you must have a connected app configured.`;
+    public static description = `This command adds a simple login mechanism missing from sfdx.`;
 
     public static examples = [
         `$ sfdx force:auth:default:login --username=lodoss118@saasforceltd.com 
