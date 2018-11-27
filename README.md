@@ -34,7 +34,7 @@ $ npm install -g sfdx-login
 $ sfdx COMMAND
 running command...
 $ sfdx (-v|--version|version)
-sfdx-login/0.0.3 darwin-x64 node-v8.12.0
+sfdx-login/0.0.4 darwin-x64 node-v8.12.0
 $ sfdx --help [COMMAND]
 USAGE
   $ sfdx COMMAND
@@ -74,7 +74,7 @@ EXAMPLE
            Organization: SAASFORCE LTD (xxxxxxxxxxx)
 ```
 
-_See code: [src/commands/force/auth/default/login.ts](https://github.com/lodossDev/sfdx-login/blob/v0.0.3/src/commands/force/auth/default/login.ts)_
+_See code: [src/commands/force/auth/default/login.ts](https://github.com/lodossDev/sfdx-login/blob/v0.0.4/src/commands/force/auth/default/login.ts)_
 <!-- commandsstop -->
 <!-- debugging-your-plugin -->
 # Debugging your plugin
