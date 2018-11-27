@@ -1,6 +1,6 @@
 {
   "name": "sfdx-login",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "author": "Amir Hafeez",
   "bugs": "https://github.com/lodossDev/sfdx-login/issues",
   "dependencies": {
