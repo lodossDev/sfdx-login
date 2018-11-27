@@ -47,7 +47,7 @@
       "@oclif/plugin-help"
     ]
   },
-  "repository": "Downloads/sfdx-login",
+  "repository": "https://github.com/lodossDev/sfdx-login",
   "scripts": {
     "postpack": "rm -f oclif.manifest.json npm-shrinkwrap.json",
     "posttest": "tslint -p test -t stylish",

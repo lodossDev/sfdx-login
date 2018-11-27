@@ -34,7 +34,7 @@ $ npm install -g sfdx-login
 $ sfdx COMMAND
 running command...
 $ sfdx (-v|--version|version)
-sfdx-login/0.0.3 darwin-x64 node-v8.9.4
+sfdx-login/0.0.3 darwin-x64 node-v8.12.0
 $ sfdx --help [COMMAND]
 USAGE
   $ sfdx COMMAND
@@ -74,23 +74,23 @@ EXAMPLE
            Organization: SAASFORCE LTD (xxxxxxxxxxx)
 ```
 
-_See code: [src/commands/force/auth/default/login.ts](https://github.com/Downloads/sfdx-login/blob/v0.0.3/src/commands/force/auth/default/login.ts)_
+_See code: [src/commands/force/auth/default/login.ts](https://github.com/lodossDev/sfdx-login/blob/v0.0.3/src/commands/force/auth/default/login.ts)_
 <!-- commandsstop -->
 <!-- debugging-your-plugin -->
 # Debugging your plugin
 We recommend using the Visual Studio Code (VS Code) IDE for your plugin development. Included in the `.vscode` directory of this plugin is a `launch.json` config file, which allows you to attach a debugger to the node process when running your commands.
 
-To debug the `hello:org` command: 
+To debug the `sfdx force:auth:default:login` command: 
 1. Start the inspector
   
 If you linked your plugin to the sfdx cli, call your command with the `dev-suspend` switch: 
 ```sh-session
-$ sfdx hello:org -u myOrg@example.com --dev-suspend
+$ sfdx sfdx force:auth:default:login --dev-suspend
 ```
   
 Alternatively, to call your command using the `bin/run` script, set the `NODE_OPTIONS` environment variable to `--inspect-brk` when starting the debugger:
 ```sh-session
-$ NODE_OPTIONS=--inspect-brk bin/run hello:org -u myOrg@example.com
+$ NODE_OPTIONS=--inspect-brk bin/run force:auth:default:login
 ```
 
 2. Set some breakpoints in your command code
