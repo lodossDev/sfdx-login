@@ -34,7 +34,7 @@ $ npm install -g sfdx-login
 $ sfdx COMMAND
 running command...
 $ sfdx (-v|--version|version)
-sfdx-login/0.0.1 darwin-x64 node-v8.12.0
+sfdx-login/0.0.3 darwin-x64 node-v8.9.4
 $ sfdx --help [COMMAND]
 USAGE
   $ sfdx COMMAND
@@ -53,12 +53,8 @@ USAGE
   $ sfdx force:auth:default:login
 
 OPTIONS
-  -c, --clientid=clientid                         (required) [default: SalesforceDevelopmentExperience] The connected
-                                                  app client id.
-
-  -k, --secret=secret                             (required) [default: 1384510088588713504] The connected app secret
-                                                  key.
-
+  -c, --clientid=clientid                         The connected app client id.
+  -k, --secret=secret                             The connected app secret key.
   -p, --password=password                         (required) Salesforce password+security token.
 
   -s, --server=server                             (required) [default: https://test.salesforce.com] The instance
@@ -72,13 +68,13 @@ OPTIONS
 
 EXAMPLE
   $ sfdx force:auth:default:login --username=lodoss118@saasforceltd.com 
-                                  --password=xxxxxxxxxx
+                                            --password=xxxxxxxxxx
  
            Logged in as: lodoss118@saasforceltd.com (xxxxxxxxxxx)
            Organization: SAASFORCE LTD (xxxxxxxxxxx)
 ```
 
-_See code: [src/commands/force/auth/default/login.ts](https://github.com/Downloads/sfdx-login/blob/v0.0.1/src/commands/force/auth/default/login.ts)_
+_See code: [src/commands/force/auth/default/login.ts](https://github.com/Downloads/sfdx-login/blob/v0.0.3/src/commands/force/auth/default/login.ts)_
 <!-- commandsstop -->
 <!-- debugging-your-plugin -->
 # Debugging your plugin

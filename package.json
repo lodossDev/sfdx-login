@@ -1,6 +1,6 @@
 {
   "name": "sfdx-login",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "author": "Amir Hafeez",
   "bugs": "https://github.com/lodossDev/sfdx-login/issues",
   "dependencies": {
@@ -42,11 +42,6 @@
   "license": "MIT",
   "oclif": {
     "commands": "./lib/commands",
-    "topics": {
-      "hello": {
-        "description": "Commands to say hello."
-      }
-    },
     "bin": "sfdx",
     "devPlugins": [
       "@oclif/plugin-help"

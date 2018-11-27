@@ -2,7 +2,8 @@ import {flags, SfdxCommand} from '@salesforce/command';
 import {AuthInfo, Connection, Org} from '@salesforce/core';
 import {AnyJson} from '@salesforce/ts-types';
 import * as jsforce from 'jsforce';
-import {JsConnection} from '../../../../../src/index'
+import {JsConnection} from '../../../../index';
+import {CLIENT_ID, SECRET_KEY} from '../../../../settings';
 
 export default class DefaultLogin extends SfdxCommand {
 
@@ -20,8 +21,8 @@ export default class DefaultLogin extends SfdxCommand {
     protected static flagsConfig = {
         // flag with a value (-n, --name=VALUE)
         server: flags.string({char: 's', required: true, description: 'The instance endpoint i.e. loginUrl', default: 'https://test.salesforce.com'}),
-        clientid: flags.string({char: 'c', required: true, description: 'The connected app client id.', default: 'SalesforceDevelopmentExperience'}),
-        secret: flags.string({char: 'k', required: true, description: 'The connected app secret key.', default: '1384510088588713504'}),
+        clientid: flags.string({char: 'c', description: 'The connected app client id.'}),
+        secret: flags.string({char: 'k', description: 'The connected app secret key.'}),
         username: flags.string({char: 'u', required: true, description: 'Salesforce username.'}),
         password: flags.string({char: 'p', required: true, description: 'Salesforce password+security token.'})
     };
@@ -30,19 +31,21 @@ export default class DefaultLogin extends SfdxCommand {
     protected static requiresProject = false;
 
     public async run(): Promise<AnyJson> {
-        const conn = new jsforce.Connection({
+        const clientid = this.flags.clientid || CLIENT_ID;
+        const secretkey = this.flags.secret|| SECRET_KEY;
+
+        const conn = <JsConnection>(new jsforce.Connection({
             oauth2 : {
                 // you can change loginUrl to connect to sandbox or prerelease env.
                 loginUrl : this.flags.server,
-                clientId : this.flags.clientid,
-                clientSecret : this.flags.secret,
+                clientId : clientid,
+                clientSecret : secretkey,
             }
-        });
+        }));
 
         await conn.login(this.flags.username, this.flags.password);
-        const jsExtend = <JsConnection>conn;
-
-        const userInfo = await jsExtend.soap.getUserInfo();
+       
+        const userInfo = await conn.soap.getUserInfo();
         this.ux.log('Logged in as: ' + userInfo.userName + ' (' + userInfo.userId + ')');
         this.ux.log('Organization: ' + userInfo.organizationName + ' (' + userInfo.organizationId + ')');
 
@@ -55,8 +58,8 @@ export default class DefaultLogin extends SfdxCommand {
      
         await authInfo.save({
             username: this.flags.username,
-            clientId: this.flags.clientid,
-            clientSecret: this.flags.secret,
+            clientId: clientid,
+            clientSecret: secretkey,
             loginUrl: this.flags.server,
             instanceUrl: conn.instanceUrl,
             orgId: userInfo.organizationId
