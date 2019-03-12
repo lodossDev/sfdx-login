@@ -2,7 +2,7 @@ import {flags, SfdxCommand} from '@salesforce/command';
 import {AuthInfo, Connection, Org} from '@salesforce/core';
 import {AnyJson} from '@salesforce/ts-types';
 import * as jsforce from 'jsforce';
-import {JsConnection} from '../../../../index';
+import {JsConnection, SoapUserInfo} from '../../../../index';
 import {CLIENT_ID, SECRET_KEY} from '../../../../settings';
 
 export default class DefaultLogin extends SfdxCommand {
@@ -32,20 +32,20 @@ export default class DefaultLogin extends SfdxCommand {
 
     public async run(): Promise<AnyJson> {
         const clientid = this.flags.clientid || CLIENT_ID;
-        const secretkey = this.flags.secret|| SECRET_KEY;
+        const secretkey = this.flags.secret || SECRET_KEY;
 
-        const conn = <JsConnection>(new jsforce.Connection({
+        const conn =  (new jsforce.Connection({
             oauth2 : {
                 // you can change loginUrl to connect to sandbox or prerelease env.
                 loginUrl : this.flags.server,
                 clientId : clientid,
-                clientSecret : secretkey,
+                clientSecret : secretkey
             }
-        }));
+        })) as JsConnection;
 
         await conn.login(this.flags.username, this.flags.password);
        
-        const userInfo = await conn.soap.getUserInfo();
+        const userInfo = await conn.soap.getUserInfo() as SoapUserInfo;
         this.ux.log('Logged in as: ' + userInfo.userName + ' (' + userInfo.userId + ')');
         this.ux.log('Organization: ' + userInfo.organizationName + ' (' + userInfo.organizationId + ')');
 
@@ -54,7 +54,13 @@ export default class DefaultLogin extends SfdxCommand {
         globalConfig.set('instanceUrl', conn.instanceUrl);
         await globalConfig.write();
 
-        const authInfo = await AuthInfo.create(conn.accessToken);
+        const authInfo = await AuthInfo.create(
+            userInfo.userName,
+            {
+                tokenServiceUrl: conn.instanceUrl,
+                accessToken: conn.accessToken
+            }
+        );
      
         await authInfo.save({
             username: this.flags.username,
