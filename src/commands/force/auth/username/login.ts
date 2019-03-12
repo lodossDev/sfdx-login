@@ -5,13 +5,13 @@ import * as jsforce from 'jsforce';
 import {JsConnection, SoapUserInfo} from '../../../../index';
 import {CLIENT_ID, SECRET_KEY} from '../../../../settings';
 
-export default class DefaultLogin extends SfdxCommand {
+export default class UsernameLogin extends SfdxCommand {
 
     public static description = `This command adds a simple login mechanism missing from sfdx.`;
 
     public static examples = [
-        `$ sfdx force:auth:default:login --username=lodoss118@saasforceltd.com 
-                                         --password=xxxxxxxxxx
+        `$ sfdx force:auth:username:login --username=lodoss118@saasforceltd.com 
+                                          --password=xxxxxxxxxx
  
         Logged in as: lodoss118@saasforceltd.com (xxxxxxxxxxx)
         Organization: SAASFORCE LTD (xxxxxxxxxxx)
@@ -43,12 +43,12 @@ export default class DefaultLogin extends SfdxCommand {
             }
         })) as JsConnection;
 
-        await conn.login(this.flags.username, this.flags.password);
+        await conn.loginBySoap(this.flags.username, this.flags.password);
        
         const userInfo = await conn.soap.getUserInfo() as SoapUserInfo;
         this.ux.log('Logged in as: ' + userInfo.userName + ' (' + userInfo.userId + ')');
         this.ux.log('Organization: ' + userInfo.organizationName + ' (' + userInfo.organizationId + ')');
-
+        
         const globalConfig = this.configAggregator.getGlobalConfig();
         globalConfig.set('defaultusername', this.flags.username);
         globalConfig.set('instanceUrl', conn.instanceUrl);

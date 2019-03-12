@@ -34,7 +34,7 @@ $ npm install -g sfdx-login
 $ sfdx COMMAND
 running command...
 $ sfdx (-v|--version|version)
-sfdx-login/0.0.4 darwin-x64 node-v8.12.0
+sfdx-login/0.0.4 darwin-x64 node-v8.15.1
 $ sfdx --help [COMMAND]
 USAGE
   $ sfdx COMMAND
@@ -42,15 +42,15 @@ USAGE
 ```
 <!-- usagestop -->
 <!-- commands -->
-* [`sfdx force:auth:default:login`](#sfdx-forceauthdefaultlogin)
+* [`sfdx force:auth:username:login`](#sfdx-forceauthusernamelogin)
 
-## `sfdx force:auth:default:login`
+## `sfdx force:auth:username:login`
 
 This command adds a simple login mechanism missing from sfdx.
 
 ```
 USAGE
-  $ sfdx force:auth:default:login
+  $ sfdx force:auth:username:login
 
 OPTIONS
   -c, --clientid=clientid                         The connected app client id.
@@ -67,30 +67,30 @@ OPTIONS
   --loglevel=(trace|debug|info|warn|error|fatal)  logging level for this command invocation
 
 EXAMPLE
-  $ sfdx force:auth:default:login --username=lodoss118@saasforceltd.com 
-                                            --password=xxxxxxxxxx
+  $ sfdx force:auth:username:login --username=lodoss118@saasforceltd.com 
+                                             --password=xxxxxxxxxx
  
            Logged in as: lodoss118@saasforceltd.com (xxxxxxxxxxx)
            Organization: SAASFORCE LTD (xxxxxxxxxxx)
 ```
 
-_See code: [src/commands/force/auth/default/login.ts](https://github.com/lodossDev/sfdx-login/blob/v0.0.4/src/commands/force/auth/default/login.ts)_
+_See code: [src/commands/force/auth/username/login.ts](https://github.com/lodossDev/sfdx-login/blob/v0.0.4/src/commands/force/auth/username/login.ts)_
 <!-- commandsstop -->
 <!-- debugging-your-plugin -->
 # Debugging your plugin
 We recommend using the Visual Studio Code (VS Code) IDE for your plugin development. Included in the `.vscode` directory of this plugin is a `launch.json` config file, which allows you to attach a debugger to the node process when running your commands.
 
-To debug the `sfdx force:auth:default:login` command: 
+To debug the `sfdx force:auth:username:login` command: 
 1. Start the inspector
   
 If you linked your plugin to the sfdx cli, call your command with the `dev-suspend` switch: 
 ```sh-session
-$ sfdx sfdx force:auth:default:login --dev-suspend
+$ sfdx sfdx force:auth:username:login --dev-suspend
 ```
   
 Alternatively, to call your command using the `bin/run` script, set the `NODE_OPTIONS` environment variable to `--inspect-brk` when starting the debugger:
 ```sh-session
-$ NODE_OPTIONS=--inspect-brk bin/run force:auth:default:login
+$ NODE_OPTIONS=--inspect-brk bin/run force:auth:username:login
 ```
 
 2. Set some breakpoints in your command code
