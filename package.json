@@ -8,6 +8,7 @@
     "@oclif/config": "1",
     "@oclif/errors": "1",
     "@salesforce/command": "0.2.5",
+    "hoek": "^4.2.1",
     "tslib": "1"
   },
   "devDependencies": {
