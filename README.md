@@ -34,7 +34,7 @@ $ npm install -g sfdx-login
 $ sfdx COMMAND
 running command...
 $ sfdx (-v|--version|version)
-sfdx-login/0.0.6 darwin-x64 node-v8.12.0
+sfdx-login/0.0.6 darwin-x64 node-v8.15.1
 $ sfdx --help [COMMAND]
 USAGE
   $ sfdx COMMAND
